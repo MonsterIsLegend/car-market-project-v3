@@ -26,7 +26,7 @@ public class AnnoucmentEntity {
     @Column(nullable = false)
     private String author;
 
-    @Column(nullable = false, unique = true, length = 200)
+    @Column()
     private String title;
 
     @Column

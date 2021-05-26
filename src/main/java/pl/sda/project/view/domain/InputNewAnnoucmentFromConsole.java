@@ -16,6 +16,7 @@ public final class InputNewAnnoucmentFromConsole {
     }
 
     public Optional<NewAnnoucment> inputNewAnnoucment() {
+        scanner.nextLine();
         System.out.println("Wpisz Tytuł: ");
         String title = scanner.nextLine();
         System.out.println("Wpisz zawartość: ");

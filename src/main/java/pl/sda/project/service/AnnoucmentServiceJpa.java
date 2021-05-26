@@ -14,10 +14,11 @@ public class AnnoucmentServiceJpa implements AnnoucmentService {
 
     private final AnnoucmentRepository annoucmentRepository;
 
+
     public AnnoucmentServiceJpa(AnnoucmentRepository annoucmentRepository) {
         this.annoucmentRepository = annoucmentRepository;
-    }
 
+    }
 
     @Override
     public void addAnnoucment(NewAnnoucment newAnnoucment) {
@@ -43,17 +44,17 @@ public class AnnoucmentServiceJpa implements AnnoucmentService {
 
     @Override
     public List<AnnoucmentForUser> showSortedByManufacture() {
-      return annoucmentRepository.sortedByManufacture();
+      return annoucmentRepository.sortedByManufacture().stream().map(AnnoucmentMapper.INSTANCE::toFront).collect(Collectors.toList());
     }
 
     @Override
     public List<AnnoucmentForUser> showSortedByYear() {
-        return annoucmentRepository.sortedByYear();
+        return annoucmentRepository.sortedByYear().stream().map(AnnoucmentMapper.INSTANCE::toFront).collect(Collectors.toList());
     }
 
     @Override
     public List<AnnoucmentForUser> showSortedAnnoucmentsByTitleDesc() {
-        return annoucmentRepository.sortedByTitleDesc();
+        return annoucmentRepository.sortedByTitleDesc().stream().map(AnnoucmentMapper.INSTANCE::toFront).collect(Collectors.toList());
 
     }
 

@@ -28,7 +28,6 @@ public class MarketController {
         ));
 
 
-
         menu.addMenuItem(new MenuItem("Wyświetl wszystkie ogłoszenia",
                 () -> {
                     PrintAllAnnoucmentsInConsole printAllAnnoucmentsInConsole = new PrintAllAnnoucmentsInConsole(annoucmentService.showAllAnnoucments());
@@ -37,10 +36,10 @@ public class MarketController {
         ));
         menu.addMenuItem(new MenuItem("Wyswietl ogłoszenie o podanym ID",
                 () -> {
-            PrintAnnoucmentFoundById ask = new PrintAnnoucmentFoundById(input);
-            long id = ask.findAnnoucmentById();
-            annoucmentService.findByID(id).ifPresent(annoucment ->
-                    new PrintAllAnnoucmentsInConsole(List.of(annoucment)).printAllAnnoucments());
+                    PrintAnnoucmentFoundById ask = new PrintAnnoucmentFoundById(input);
+                    long id = ask.findAnnoucmentById();
+                    annoucmentService.findByID(id).ifPresent(annoucment ->
+                            new PrintAllAnnoucmentsInConsole(List.of(annoucment)).printAllAnnoucments());
                 }
         ));
         menu.addMenuItem(new MenuItem("Wyswietl ogłoszenie podanego producenta",
@@ -55,9 +54,23 @@ public class MarketController {
 
         menu.addMenuItem(new MenuItem("Posortuj według producentów",
                 () -> {
-                    
+                    PrintAllAnnoucmentsInConsole printAllAnnoucmentsInConsole = new PrintAllAnnoucmentsInConsole(annoucmentService.showSortedByManufacture());
+                    printAllAnnoucmentsInConsole.printAllAnnoucments();
                 }
-                ));
+        ));
+        menu.addMenuItem(new MenuItem("Posortuj według roku produkcji",
+                () -> {
+                    PrintAllAnnoucmentsInConsole printAllAnnoucmentsInConsole = new PrintAllAnnoucmentsInConsole(annoucmentService.showSortedByYear());
+                    printAllAnnoucmentsInConsole.printAllAnnoucments();
+                }
+        ));
+        menu.addMenuItem(new MenuItem("Posortuj według tytułu malejąco",
+                () -> {
+                    PrintAllAnnoucmentsInConsole printAllAnnoucmentsInConsole = new PrintAllAnnoucmentsInConsole(annoucmentService.showSortedByYear());
+                    printAllAnnoucmentsInConsole.printAllAnnoucments();
+                }
+        ));
+
         menu.addMenuItem(new MenuItem(
                 "Usuń artykuł",
                 () -> {

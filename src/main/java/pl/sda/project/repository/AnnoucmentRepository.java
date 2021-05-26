@@ -16,13 +16,13 @@ public interface AnnoucmentRepository extends JpaRepository<AnnoucmentEntity, Lo
 //    long maxId();
 
     @Query("select a from AnnoucmentEntity a order by  a.manufacture asc ")
-    List<AnnoucmentForUser> sortedByManufacture();
+    List<AnnoucmentEntity> sortedByManufacture();
 
     @Query("select a from AnnoucmentEntity a order by a.productionYear asc ")
-    List<AnnoucmentForUser> sortedByYear();
+    List<AnnoucmentEntity> sortedByYear();
 
     @Query("select a from AnnoucmentEntity a order by a.title desc ")
-    List<AnnoucmentForUser> sortedByTitleDesc();
+    List<AnnoucmentEntity> sortedByTitleDesc();
 
 
 }
