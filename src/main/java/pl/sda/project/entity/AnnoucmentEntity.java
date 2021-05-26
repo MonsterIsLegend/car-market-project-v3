@@ -7,8 +7,9 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
+
 
 @Builder
 @Data
@@ -38,16 +39,12 @@ public class AnnoucmentEntity {
     private String model;
 
     @Column(nullable = false)
-    private Long productionYear;
+    private int productionYear;
 
     @Column(nullable = false)
-    private double price;
+    private BigDecimal price;
 
     @CreationTimestamp
     private Timestamp published;
 
-    @PrePersist
-    private void setDefaultTimeStamp(){
-        published = Timestamp.valueOf(LocalDateTime.now());
-    }
 }

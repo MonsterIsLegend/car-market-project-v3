@@ -1,56 +1,64 @@
 package pl.sda.project.service;
 
 import org.springframework.stereotype.Service;
-import pl.sda.project.domain.NewQuiz;
-import pl.sda.project.domain.QuizForUser;
-import pl.sda.project.domain.UserAnswer;
-import pl.sda.project.mapper.QuizMapper;
-import pl.sda.project.repository.QuizRepository;
-
+import pl.sda.project.domain.AnnoucmentForUser;
+import pl.sda.project.domain.NewAnnoucment;
+import pl.sda.project.mapper.AnnoucmentMapper;
+import pl.sda.project.repository.AnnoucmentRepository;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 @Service
 public class AnnoucmentServiceJpa implements AnnoucmentService {
-    private static final Random RANDOM = new Random();
 
-    private final QuizRepository quizRepository;
+    private final AnnoucmentRepository annoucmentRepository;
 
-    public AnnoucmentServiceJpa(QuizRepository quizRepository) {
-        this.quizRepository = quizRepository;
+    public AnnoucmentServiceJpa(AnnoucmentRepository annoucmentRepository) {
+        this.annoucmentRepository = annoucmentRepository;
+    }
+
+
+    @Override
+    public void addAnnoucment(NewAnnoucment newAnnoucment) {
+    annoucmentRepository.save(AnnoucmentMapper.INSTANCE.toEntity(newAnnoucment));
+    }
+
+
+    @Override
+    public Optional<AnnoucmentForUser> findByID(Long id) {
+        return annoucmentRepository.findById(id).map(AnnoucmentMapper.INSTANCE::toFront);
     }
 
     @Override
-    public void addQuiz(NewQuiz newQuiz) {
-        quizRepository.save(QuizMapper.INSTANCE.toEntity(newQuiz));
+    public List<AnnoucmentForUser> findByManufacture(String manufactureToFind) {
+        return annoucmentRepository.findAll().stream().filter(manuf -> manuf.getManufacture().equals(manufactureToFind)).map(AnnoucmentMapper.INSTANCE::toFront).collect(Collectors.toList());
     }
 
     @Override
-    public Optional<QuizForUser> findById(long id) {
-        return quizRepository.findById(id).map(QuizMapper.INSTANCE::toFront);
+    public List<AnnoucmentForUser> showAllAnnoucments() {
+        return annoucmentRepository.findAll().stream().map(AnnoucmentMapper.INSTANCE::toFront).collect(Collectors.toList());
+    }
+
+
+    @Override
+    public List<AnnoucmentForUser> showSortedByManufacture() {
+      return annoucmentRepository.sortedByManufacture();
     }
 
     @Override
-    public List<QuizForUser> findAll() {
-        return quizRepository.findAll().stream().map(QuizMapper.INSTANCE::toFront).collect(Collectors.toList());
+    public List<AnnoucmentForUser> showSortedByYear() {
+        return annoucmentRepository.sortedByYear();
     }
 
     @Override
-    public Optional<QuizForUser> findRandom() {
-        long count = quizRepository.count();
-        return quizRepository.findAll()
-                .stream()
-                .map(QuizMapper.INSTANCE::toFront)
-                .min((a, b) -> RANDOM.nextInt(2) - 1);
+    public List<AnnoucmentForUser> showSortedAnnoucmentsByTitleDesc() {
+        return annoucmentRepository.sortedByTitleDesc();
+
     }
 
     @Override
-    public boolean isValidAnswer(UserAnswer userAnswer) {
-        return quizRepository.findById(userAnswer.getQuizId())
-                .map(QuizMapper.INSTANCE::toDomain)
-                .filter(quiz -> quiz.isValidUserAnswer(userAnswer))
-                .isPresent();
+    public void deleteById(Long id) {
+        annoucmentRepository.deleteById(id);
     }
 }

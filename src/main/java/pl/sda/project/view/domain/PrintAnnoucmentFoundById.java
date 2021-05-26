@@ -2,16 +2,16 @@ package pl.sda.project.view.domain;
 
 import java.util.Scanner;
 
-public class PrintQuizFoundById {
+public class PrintAnnoucmentFoundById {
     private final Scanner scanner;
 
 
-    public PrintQuizFoundById(Scanner scanner) {
+    public PrintAnnoucmentFoundById(Scanner scanner) {
         this.scanner = scanner;
     }
 
-    public long findQuizById(){
-        System.out.println("Podaj ID quizu: ");
+    public long findAnnoucmentById(){
+        System.out.println("Podaj ID ogłoszenia: ");
         return scanner.nextLong();
     }
 

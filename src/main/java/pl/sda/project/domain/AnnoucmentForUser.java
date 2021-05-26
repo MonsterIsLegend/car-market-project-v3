@@ -3,13 +3,11 @@ package pl.sda.project.domain;
 import lombok.Builder;
 import lombok.Data;
 
-import javax.persistence.Column;
 import java.math.BigDecimal;
-import java.sql.Timestamp;
 
 @Data
 @Builder
-public class Annoucment {
+public class AnnoucmentForUser {
     private long id;
     private String author;
     private String title;
@@ -18,6 +16,4 @@ public class Annoucment {
     private String model;
     private int productionYear;
     private BigDecimal price;
-    private Timestamp published;
-
 }

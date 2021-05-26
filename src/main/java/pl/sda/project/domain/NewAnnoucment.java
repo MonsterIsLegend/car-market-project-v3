@@ -3,14 +3,12 @@ package pl.sda.project.domain;
 import lombok.Builder;
 import lombok.Data;
 
-import javax.persistence.Column;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 @Data
 @Builder
-public class Annoucment {
-    private long id;
+public class NewAnnoucment {
     private String author;
     private String title;
     private String inside;
