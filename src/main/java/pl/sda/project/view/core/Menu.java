@@ -7,6 +7,7 @@ public class Menu {
     private List<MenuItem> menuItems = new ArrayList<>();
     public static Runnable DEFAULT_QUIT = () -> System.exit(0);
 
+
     public void addMenuItem(MenuItem item) {
         menuItems.add(item);
     }

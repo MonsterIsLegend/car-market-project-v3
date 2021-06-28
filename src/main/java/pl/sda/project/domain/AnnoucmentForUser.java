@@ -15,5 +15,6 @@ public class AnnoucmentForUser {
     private String manufacture;
     private String model;
     private int productionYear;
+    private String type;
     private BigDecimal price;
 }

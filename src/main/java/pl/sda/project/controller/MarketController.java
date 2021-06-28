@@ -66,7 +66,7 @@ public class MarketController {
         ));
         menu.addMenuItem(new MenuItem("Posortuj według tytułu malejąco",
                 () -> {
-                    PrintAllAnnoucmentsInConsole printAllAnnoucmentsInConsole = new PrintAllAnnoucmentsInConsole(annoucmentService.showSortedByYear());
+                    PrintAllAnnoucmentsInConsole printAllAnnoucmentsInConsole = new PrintAllAnnoucmentsInConsole(annoucmentService.showSortedAnnoucmentsByTitleDesc());
                     printAllAnnoucmentsInConsole.printAllAnnoucments();
                 }
         ));

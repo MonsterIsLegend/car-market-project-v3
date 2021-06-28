@@ -31,6 +31,17 @@ public final class InputNewAnnoucmentFromConsole {
         int productionYear = scanner.nextInt();
         System.out.println("Wpisz cenę samochodu: ");
         BigDecimal price =  scanner.nextBigDecimal();
+        scanner.nextLine();
+        System.out.println("Podaj typ ogłoszenia ( k dla kupie, s dla sprzedam: ");
+        String check =  scanner.nextLine();
+        String type = null;
+        if(check.equals("k")){
+            type = "kupie";
+        }else if(check.equals("s")){
+            type = "sprzedam";
+        }else{
+            type = "sprzedam";
+        }
         return Optional.ofNullable(
                 NewAnnoucment.builder()
                         .title(title)
@@ -40,6 +51,7 @@ public final class InputNewAnnoucmentFromConsole {
                         .model(model)
                         .price(price)
                         .productionYear(productionYear)
+                        .type(type)
                         .published(Timestamp.valueOf(LocalDateTime.now()))
                         .build());
     }

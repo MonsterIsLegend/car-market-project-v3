@@ -26,10 +26,10 @@ public class AnnoucmentEntity {
     @Column(nullable = false)
     private String author;
 
-    @Column()
+    @Column(nullable = false)
     private String title;
 
-    @Column
+    @Column(nullable = false)
     private String inside;
 
     @Column(nullable = false)
@@ -43,6 +43,9 @@ public class AnnoucmentEntity {
 
     @Column(nullable = false)
     private BigDecimal price;
+
+    @Column(nullable = false)
+    private String type;
 
     @CreationTimestamp
     private Timestamp published;

@@ -18,6 +18,7 @@ public class Annoucment {
     private String model;
     private int productionYear;
     private BigDecimal price;
+    private String type;
     private Timestamp published;
 
 }

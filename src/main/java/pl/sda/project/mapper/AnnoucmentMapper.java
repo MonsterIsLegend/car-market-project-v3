@@ -24,6 +24,7 @@ public enum AnnoucmentMapper {
                 .productionYear(newAnnoucment.getProductionYear())
                 .published(Timestamp.valueOf(LocalDateTime.now()))
                 .price(newAnnoucment.getPrice())
+                .type(newAnnoucment.getType())
                 .build();
     }
 
@@ -37,6 +38,7 @@ public enum AnnoucmentMapper {
                 .model(entity.getModel())
                 .price(entity.getPrice())
                 .productionYear(entity.getProductionYear())
+                .type(entity.getType())
                 .published(entity.getPublished())
                 .build();
     }
@@ -52,6 +54,7 @@ public enum AnnoucmentMapper {
                 .price(annoucment.getPrice())
                 .productionYear(annoucment.getProductionYear())
                 .title(annoucment.getTitle())
+                .type(annoucment.getType())
                 .build();
     }
 }
